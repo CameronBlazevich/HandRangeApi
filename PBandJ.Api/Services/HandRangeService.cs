@@ -2,6 +2,7 @@
 using PBandJ.Api.Enums;
 using PBandJ.Api.Models;
 using System;
+using System.Collections.Generic;
 
 namespace PBandJ.Api.Services
 {
@@ -44,12 +45,21 @@ namespace PBandJ.Api.Services
 
         public void CreateOrUpdateHandRange(HandRangeDto handRangeDto)
         {
+            handRangeDto.Hands = RemoveDuplicateHands(handRangeDto.Hands);
             _handRangeValidationService.VerifyHandRangeContainsOnlyValidHands(handRangeDto.Hands);
             var handRangeEntity = MapDtoToEntity(handRangeDto);
 
             AddOrUpdateHandRange(handRangeEntity);
         }
-       
+
+        private static string[] RemoveDuplicateHands(string[] hands)
+        {
+            var handsHash = new HashSet<string>(hands);
+            var deDupedHands = new string[handsHash.Count];
+            handsHash.CopyTo(deDupedHands);
+            return deDupedHands;
+        }
+
         private HandRange MapDtoToEntity(HandRangeDto handRangeDto)
         {
             var handRange = new HandRange
