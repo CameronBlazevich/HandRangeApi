@@ -7,11 +7,6 @@ using System.Linq;
 
 namespace PBandJ.Api.Enums
 {
-    public class PokerHand
-    {
-        public string DisplayName { get; set; }
-    }
-
     public static class PossibleHands
     {
         public static readonly string[] HandsArray = { "AAo",

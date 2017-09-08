@@ -14,22 +14,6 @@ namespace PBandJ.Api.Controllers
         {
             _handRangeService = handRangeService;
         }
-        [HttpGet]
-        public IActionResult GetAllHandRanges()
-        {
-
-
-            //using (var writer = new StreamWriter("WriteMyCode.txt"))
-            //{
-            //    foreach (var hand in PossibleHands.Possiblities)
-            //    {
-            //        writer.WriteLine($"\"{hand.DisplayValue}\", ");
-            //    }
-            //}
-
-
-            return Ok();
-        }
 
         [HttpGet("{positionId}")]
         public IActionResult GetHandRangeByPosition(int positionId)
