@@ -45,11 +45,16 @@ namespace PBandJ.Api.Services
 
         public void CreateOrUpdateHandRange(HandRangeDto handRangeDto)
         {
-            handRangeDto.Hands = RemoveDuplicateHands(handRangeDto.Hands);
-            _handRangeValidationService.VerifyHandRangeContainsOnlyValidHands(handRangeDto.Hands);
+            SanitizeHands(handRangeDto.Hands);
             var handRangeEntity = MapDtoToEntity(handRangeDto);
 
             AddOrUpdateHandRange(handRangeEntity);
+        }
+
+        private void SanitizeHands(string[] hands)
+        {
+            hands = RemoveDuplicateHands(hands);
+            _handRangeValidationService.VerifyHandRangeContainsOnlyValidHands(hands);
         }
 
         private static string[] RemoveDuplicateHands(string[] hands)
