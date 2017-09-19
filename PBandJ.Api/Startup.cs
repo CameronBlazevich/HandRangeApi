@@ -14,6 +14,7 @@ namespace PBandJ.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddCors();
 
             var connectionString = @"Server=(localdb)\mssqllocaldb;Database=PBandJDb;Trusted_Connection=true";
             services.AddDbContext<HandRangeContext>(o => o.UseSqlServer(connectionString));
@@ -21,18 +22,25 @@ namespace PBandJ.Api
             services.AddScoped<IHandRangeService, HandRangeService>();
             services.AddTransient<IHandRangeValidationService, HandRangeValidationService>();
             services.AddScoped<IHandRangeRepository, HandRangeRepository>();
+            services.AddTransient<IPositionService, PositionService>();
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseCors(builder =>
+                builder.WithOrigins("http://localhost:3000")
+                .AllowAnyMethod()
+                .AllowAnyHeader());
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
             app.UseMvc();
+
+
             //app.Run(async (context) =>
             //{
             //    await context.Response.WriteAsync("Hello World!");

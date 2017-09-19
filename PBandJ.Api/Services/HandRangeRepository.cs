@@ -1,4 +1,5 @@
-﻿using PBandJ.Api.Entities;
+﻿using System.Collections.Generic;
+using PBandJ.Api.Entities;
 using PBandJ.Api.Enums;
 using System.Linq;
 
@@ -12,21 +13,28 @@ namespace PBandJ.Api.Services
         {
             _context = context;
         }
-        public void AddHandRange(HandRange handRange)
+        public HandRange AddHandRange(HandRange handRange)
         {
             _context.Add(handRange);
             _context.SaveChanges();
+            return handRange;
         }
 
-        public void UpdateHandRange(HandRange handRange)
+        public HandRange UpdateHandRange(HandRange handRange)
         {
             _context.Update(handRange);
             _context.SaveChanges();
+            return handRange;
         }
 
         public HandRange GetHandRange(int userId, Position position)
         {
             return _context.HandRanges.SingleOrDefault(hr => hr.Position == position && hr.UserId == userId);
+        }
+
+        public IEnumerable<HandRange> GetHandRanges(int userId)
+        {
+            return _context.HandRanges.Where(hr => hr.UserId == userId).ToList();
         }
     }
 }

@@ -32,6 +32,21 @@ namespace PBandJ.Api.Services
             }
         }
 
+        public IEnumerable<HandRangeDto> GetHandRanges(int userId)
+        {
+
+            var handRanges = _handRangeRepository.GetHandRanges(userId);
+
+            var handRangeDtos = new List<HandRangeDto>();
+            foreach (var handRange in handRanges)
+            {
+                var handRangeDto = MapEntityToDto(handRange);
+                handRangeDtos.Add(handRangeDto);
+            }
+
+            return handRangeDtos;
+        }
+
         private HandRangeDto MapEntityToDto(HandRange handRange)
         {
             var handRangeDto = new HandRangeDto
@@ -43,12 +58,12 @@ namespace PBandJ.Api.Services
             return handRangeDto;
         }
 
-        public void CreateOrUpdateHandRange(HandRangeDto handRangeDto)
+        public HandRangeDto CreateOrUpdateHandRange(HandRangeDto handRangeDto)
         {
             SanitizeHands(handRangeDto.Hands);
             var handRangeEntity = MapDtoToEntity(handRangeDto);
 
-            AddOrUpdateHandRange(handRangeEntity);
+            return  MapEntityToDto(AddOrUpdateHandRange(handRangeEntity));
         }
 
         private void SanitizeHands(string[] hands)
@@ -76,7 +91,7 @@ namespace PBandJ.Api.Services
             return handRange;
         }
 
-        private void AddOrUpdateHandRange(HandRange handRange)
+        private HandRange AddOrUpdateHandRange(HandRange handRange)
         {
             try
             {
@@ -84,11 +99,12 @@ namespace PBandJ.Api.Services
                 if (existingRecord != null)
                 {
                     existingRecord.HandsArray = handRange.HandsArray;
-                    _handRangeRepository.UpdateHandRange(existingRecord);
+                    return _handRangeRepository.UpdateHandRange(existingRecord);
+                    
                 }
                 else
                 {
-                    _handRangeRepository.AddHandRange(handRange);
+                    return _handRangeRepository.AddHandRange(handRange);
                 }
             }
             catch (Exception ex)

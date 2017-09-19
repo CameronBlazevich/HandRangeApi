@@ -15,6 +15,14 @@ namespace PBandJ.Api.Controllers
             _handRangeService = handRangeService;
         }
 
+        [HttpGet]
+        public IActionResult GetHandRanges()
+        {
+            var userId = FigureOutUserId();
+            var handRanges = _handRangeService.GetHandRanges(userId);
+            return Ok(handRanges);
+        }
+
         [HttpGet("{positionId}")]
         public IActionResult GetHandRangeByPosition(int positionId)
         {
@@ -39,7 +47,7 @@ namespace PBandJ.Api.Controllers
 
             try
             {
-                _handRangeService.CreateOrUpdateHandRange(handRange);
+                handRange = _handRangeService.CreateOrUpdateHandRange(handRange);
             }
             catch (HandRangeServiceException ex)
             {
@@ -47,7 +55,7 @@ namespace PBandJ.Api.Controllers
                 return BadRequest(new {ex.Message});
             }
 
-            return Ok();
+            return Ok(handRange);
         }
     }
 }
