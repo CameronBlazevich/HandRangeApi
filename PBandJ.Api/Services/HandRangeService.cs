@@ -51,6 +51,8 @@ namespace PBandJ.Api.Services
         {
             var handRangeDto = new HandRangeDto
             {
+                //TODO: decide if i want to return userId
+                //UserId = handRange.UserId,
                 Hands = handRange.HandsArray,
                 Position = handRange.Position
             };

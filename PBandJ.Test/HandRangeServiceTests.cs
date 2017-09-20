@@ -76,13 +76,16 @@ namespace PBandJ.Test
             _repoMock.Setup(repo => repo.GetHandRange(It.IsAny<int>(), It.IsAny<Position>())).Returns((HandRange)null);
             _repoMock.Setup(repo => repo.AddHandRange(It.IsAny<HandRange>()))
                 .Callback<HandRange>(hr => handRangeAtRunTime = hr)
-                .Verifiable();
+                .Returns(handRangeEntity);
+
             _repoMock.Setup(repo => repo.UpdateHandRange(It.IsAny<HandRange>())).Verifiable();
 
             var service = new HandRangeService(_repoMock.Object, _validationServiceMock.Object);
-            service.CreateOrUpdateHandRange(handRangeDto);
+
+            var actual = service.CreateOrUpdateHandRange(handRangeDto);
 
             handRangeAtRunTime.ShouldBeEquivalentTo(handRangeEntity);
+            //actual.ShouldBeEquivalentTo(handRangeDto);
             _validationServiceMock.Verify(m => m.VerifyHandRangeContainsOnlyValidHands(It.IsAny<string[]>()), Times.Once);
             _repoMock.Verify(m => m.UpdateHandRange(It.IsAny<HandRange>()), Times.Never);
             _repoMock.Verify(m => m.AddHandRange(It.IsAny<HandRange>()), Times.Once);
@@ -118,13 +121,16 @@ namespace PBandJ.Test
             _repoMock.Setup(repo => repo.GetHandRange(It.IsAny<int>(), It.IsAny<Position>())).Returns(handRangeMock);
             _repoMock.Setup(repo => repo.UpdateHandRange(It.IsAny<HandRange>()))
                 .Callback<HandRange>(hr => handRangeAtRunTime = hr)
-                .Verifiable();
+                .Returns(handRangeEntity);
+ 
             _repoMock.Setup(repo => repo.AddHandRange(It.IsAny<HandRange>())).Verifiable();
 
             var service = new HandRangeService(_repoMock.Object, _validationServiceMock.Object);
-            service.CreateOrUpdateHandRange(handRangeDto);
+
+            var actual = service.CreateOrUpdateHandRange(handRangeDto);
 
             handRangeAtRunTime.ShouldBeEquivalentTo(handRangeEntity);
+            //actual.ShouldBeEquivalentTo(handRangeDto);
             _validationServiceMock.Verify(m => m.VerifyHandRangeContainsOnlyValidHands(It.IsAny<string[]>()), Times.Once);
             _repoMock.Verify(m => m.UpdateHandRange(It.IsAny<HandRange>()), Times.Once);
             _repoMock.Verify(m => m.AddHandRange(It.IsAny<HandRange>()), Times.Never);
