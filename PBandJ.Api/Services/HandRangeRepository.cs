@@ -27,12 +27,12 @@ namespace PBandJ.Api.Services
             return handRange;
         }
 
-        public HandRange GetHandRange(int userId, Position position)
+        public HandRange GetHandRange(string userId, Position position)
         {
             return _context.HandRanges.SingleOrDefault(hr => hr.Position == position && hr.UserId == userId);
         }
 
-        public IEnumerable<HandRange> GetHandRanges(int userId)
+        public IEnumerable<HandRange> GetHandRanges(string userId)
         {
             return _context.HandRanges.Where(hr => hr.UserId == userId).ToList();
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PBandJ.Api.Services;
 
@@ -12,6 +13,7 @@ namespace PBandJ.Api.Controllers
         {
             _positionService = positionService;
         }
+        
         [HttpGet]
         public IActionResult GetPositions()
         {

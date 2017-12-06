@@ -6,7 +6,7 @@ namespace PBandJ.Api.Entities
 {
     public class HandRange
     {
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public Position Position { get; set; }
         public string Hands { get; set; }
 

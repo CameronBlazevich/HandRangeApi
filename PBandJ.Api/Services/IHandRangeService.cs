@@ -8,7 +8,7 @@ namespace PBandJ.Api.Services
     public interface IHandRangeService
     {
         HandRangeDto CreateOrUpdateHandRange(HandRangeDto handRangeDto);
-        HandRangeDto GetHandRange(int userId, Position position);
-        IEnumerable<HandRangeDto> GetHandRanges(int userId);
+        HandRangeDto GetHandRange(string userId, Position position);
+        IEnumerable<HandRangeDto> GetHandRanges(string userId);
     }
 }

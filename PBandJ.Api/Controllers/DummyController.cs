@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography.X509Certificates;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PBandJ.Api.Entities;
 
@@ -13,11 +14,19 @@ namespace PBandJ.Api.Controllers
             _ctx = ctx;
         }
 
+        [Authorize]
         [HttpGet]
-        [Route("api/testdatabase")]
-        public IActionResult TestDatabase()
+        [Route("api/testauth")]
+        public IActionResult TestAuth()
         {
-            return Ok();
+            return Ok("Authorized Endpoint");
+        }
+
+        [HttpGet]
+        [Route("api/test")]
+        public IActionResult Test()
+        {
+            return Ok("No-Auth Endpoint.");
         }
     }
 }
