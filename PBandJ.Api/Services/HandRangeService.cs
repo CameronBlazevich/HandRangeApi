@@ -17,7 +17,7 @@ namespace PBandJ.Api.Services
             _handRangeRepository = handRangeRepository;
         }
 
-        public HandRangeDto GetHandRange(int userId, Position position)
+        public HandRangeDto GetHandRange(string userId, Position position)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace PBandJ.Api.Services
             }
         }
 
-        public IEnumerable<HandRangeDto> GetHandRanges(int userId)
+        public IEnumerable<HandRangeDto> GetHandRanges(string userId)
         {
 
             var handRanges = _handRangeRepository.GetHandRanges(userId);

@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Linq;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PBandJ.Api.Enums;
 using PBandJ.Api.Models;
 using PBandJ.Api.Services;
@@ -15,9 +18,13 @@ namespace PBandJ.Api.Controllers
             _handRangeService = handRangeService;
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult GetHandRanges()
         {
+
+            
+
             var userId = FigureOutUserId();
             var handRanges = _handRangeService.GetHandRanges(userId);
             return Ok(handRanges);
@@ -31,12 +38,15 @@ namespace PBandJ.Api.Controllers
             return Ok(handRange);
         }
 
-        private int FigureOutUserId()
+        private string FigureOutUserId()
         {
-            return 0;
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            return userId;
+            return "0";
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult CreateHandRange(
             [FromBody] HandRangeDto handRange)
         {
@@ -47,6 +57,7 @@ namespace PBandJ.Api.Controllers
 
             try
             {
+                handRange.UserId = FigureOutUserId();
                 handRange = _handRangeService.CreateOrUpdateHandRange(handRange);
             }
             catch (HandRangeServiceException ex)
