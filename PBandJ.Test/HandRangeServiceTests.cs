@@ -4,6 +4,7 @@ using Moq;
 using PBandJ.Api.Entities;
 using PBandJ.Api.Enums;
 using PBandJ.Api.Models;
+using PBandJ.Api.Repositories;
 using PBandJ.Api.Services;
 
 namespace PBandJ.Test

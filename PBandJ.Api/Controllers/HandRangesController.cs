@@ -10,7 +10,7 @@ using PBandJ.Api.Services.Exceptions;
 namespace PBandJ.Api.Controllers
 {
     [Route("api/[controller]")]
-    public class HandRangesController : Controller
+    public class HandRangesController : PbAndJControllerBase
     {
         private readonly IHandRangeService _handRangeService;
         public HandRangesController(IHandRangeService handRangeService)
@@ -21,10 +21,7 @@ namespace PBandJ.Api.Controllers
         [Authorize]
         [HttpGet]
         public IActionResult GetHandRanges()
-        {
-
-            
-
+        {          
             var userId = FigureOutUserId();
             var handRanges = _handRangeService.GetHandRanges(userId);
             return Ok(handRanges);
@@ -38,12 +35,7 @@ namespace PBandJ.Api.Controllers
             return Ok(handRange);
         }
 
-        private string FigureOutUserId()
-        {
-            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
-            return userId;
-            return "0";
-        }
+
 
         [HttpPost]
         [Authorize]

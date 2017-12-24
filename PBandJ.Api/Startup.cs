@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PBandJ.Api.Entities;
+using PBandJ.Api.Repositories;
 using PBandJ.Api.Services;
 
 namespace PBandJ.Api
@@ -33,13 +34,16 @@ namespace PBandJ.Api
             services.AddMvc();
             services.AddCors();
 
-            var connectionString = @"Data Source=tcp:s18.winhost.com;Initial Catalog=DB_118134_handrang;User ID=DB_118134_handrang_user;Password=J24hzkoPr2zpceReifju;Integrated Security=False;";
+            //var connectionString = @"Data Source=tcp:s18.winhost.com;Initial Catalog=DB_118134_handrang;User ID=DB_118134_handrang_user;Password=J24hzkoPr2zpceReifju;Integrated Security=False;";
+            var connectionString = @"Server=(localdb)\mssqllocaldb;Database=PBandJDb;Trusted_Connection=true";
             services.AddDbContext<HandRangeContext>(o => o.UseSqlServer(connectionString));
 
             services.AddScoped<IHandRangeService, HandRangeService>();
             services.AddTransient<IHandRangeValidationService, HandRangeValidationService>();
             services.AddScoped<IHandRangeRepository, HandRangeRepository>();
             services.AddTransient<IPositionService, PositionService>();
+            services.AddTransient<ISituationService, SituationService>();
+            services.AddScoped<ISituationRepository, SituationRepository>();
 
         }
 

@@ -2,7 +2,7 @@
 using PBandJ.Api.Entities;
 using PBandJ.Api.Enums;
 
-namespace PBandJ.Api.Services
+namespace PBandJ.Api.Repositories
 {
     public interface IHandRangeRepository
     {

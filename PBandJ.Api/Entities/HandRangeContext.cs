@@ -9,6 +9,7 @@ namespace PBandJ.Api.Entities
             Database.Migrate();
         }
         public DbSet<HandRange> HandRanges { get; set; }
+        public DbSet<Situation> Situations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -1,6 +1,7 @@
 ﻿using PBandJ.Api.Entities;
 using PBandJ.Api.Enums;
 using PBandJ.Api.Models;
+using PBandJ.Api.Repositories;
 using System;
 using System.Collections.Generic;
 

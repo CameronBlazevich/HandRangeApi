@@ -3,7 +3,7 @@ using PBandJ.Api.Entities;
 using PBandJ.Api.Enums;
 using System.Linq;
 
-namespace PBandJ.Api.Services
+namespace PBandJ.Api.Repositories
 {
     public class HandRangeRepository : IHandRangeRepository
     {

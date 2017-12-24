@@ -12,9 +12,10 @@ using System;
 namespace PBandJ.Api.Migrations
 {
     [DbContext(typeof(HandRangeContext))]
-    partial class HandRangeContextModelSnapshot : ModelSnapshot
+    [Migration("20171207032645_IncludeUserIdOnSituationsTable")]
+    partial class IncludeUserIdOnSituationsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
