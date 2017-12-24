@@ -10,6 +10,7 @@ namespace PBandJ.Api.Entities
         }
         public DbSet<HandRange> HandRanges { get; set; }
         public DbSet<Scenario> Scenarios { get; set; }
+        public DbSet<PositionMenu> PositionMenus { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
