@@ -42,8 +42,8 @@ namespace PBandJ.Api
             services.AddTransient<IHandRangeValidationService, HandRangeValidationService>();
             services.AddScoped<IHandRangeRepository, HandRangeRepository>();
             services.AddTransient<IPositionService, PositionService>();
-            services.AddTransient<ISituationService, SituationService>();
-            services.AddScoped<ISituationRepository, SituationRepository>();
+            services.AddTransient<IScenarioService, ScenarioService>();
+            services.AddScoped<IScenarioRepository, ScenarioRepository>();
 
         }
 

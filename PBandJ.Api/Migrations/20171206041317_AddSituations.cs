@@ -10,7 +10,7 @@ namespace PBandJ.Api.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Situations",
+                name: "Scenarios",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -26,7 +26,7 @@ namespace PBandJ.Api.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Situations");
+                name: "Scenarios");
         }
     }
 }

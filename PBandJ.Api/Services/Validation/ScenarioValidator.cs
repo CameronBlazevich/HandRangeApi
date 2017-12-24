@@ -2,11 +2,11 @@
 
 namespace PBandJ.Api.Services.Validation
 {
-    public static class SituationValidator
+    public static class ScenarioValidator
     {
-        public static bool IsValid(this SituationDto situation)
+        public static bool IsValid(this ScenarioDto scenario)
         {
-            if (situation.Name.Length > 30)
+            if (scenario.Name.Length > 30)
             {
                 return false;
             }

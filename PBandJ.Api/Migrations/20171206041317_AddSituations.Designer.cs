@@ -35,7 +35,7 @@ namespace PBandJ.Api.Migrations
                     b.ToTable("HandRanges");
                 });
 
-            modelBuilder.Entity("PBandJ.Api.Entities.Situation", b =>
+            modelBuilder.Entity("PBandJ.Api.Entities.Scenario", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -44,7 +44,7 @@ namespace PBandJ.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Situations");
+                    b.ToTable("Scenarios");
                 });
 #pragma warning restore 612, 618
         }

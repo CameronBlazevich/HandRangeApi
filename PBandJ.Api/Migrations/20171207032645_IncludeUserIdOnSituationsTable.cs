@@ -10,7 +10,7 @@ namespace PBandJ.Api.Migrations
         {
             migrationBuilder.AddColumn<string>(
                 name: "UserId",
-                table: "Situations",
+                table: "Scenarios",
                 type: "nvarchar(max)",
                 nullable: true);
         }
@@ -19,7 +19,7 @@ namespace PBandJ.Api.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "UserId",
-                table: "Situations");
+                table: "Scenarios");
         }
     }
 }

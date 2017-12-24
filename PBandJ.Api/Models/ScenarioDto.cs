@@ -1,6 +1,6 @@
 ﻿namespace PBandJ.Api.Models
 {
-    public class SituationDto
+    public class ScenarioDto
     {
         public int Id { get; set; }
         public string UserId { get; set; }
