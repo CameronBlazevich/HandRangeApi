@@ -7,6 +7,6 @@ namespace PBandJ.Api.Entities
         public int Id { get; set; }
         public int ScenarioId { get; set; }
         public string DisplayName { get; set; }
-        public List<Position> HerosPositions  { get; set; }
+        public IEnumerable<Position> Positions  { get; set; }
     }
 }

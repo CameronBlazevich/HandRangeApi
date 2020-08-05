@@ -1,6 +1,4 @@
-﻿using PBandJ.Api.Models;
-
-namespace PBandJ.Api.Services
+﻿namespace PBandJ.Api.Services.HandRanges
 {
     public interface IHandRangeValidationService
     {

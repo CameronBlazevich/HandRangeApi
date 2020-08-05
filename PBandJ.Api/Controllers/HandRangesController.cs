@@ -6,6 +6,7 @@ using PBandJ.Api.Enums;
 using PBandJ.Api.Models;
 using PBandJ.Api.Services;
 using PBandJ.Api.Services.Exceptions;
+using PBandJ.Api.Services.HandRanges;
 
 namespace PBandJ.Api.Controllers
 {
@@ -37,28 +38,28 @@ namespace PBandJ.Api.Controllers
 
 
 
-        [HttpPost]
-        [Authorize]
-        public IActionResult CreateHandRange(
-            [FromBody] HandRangeDto handRange)
-        {
-            if (handRange == null)
-            {
-                return BadRequest();
-            }
-
-            try
-            {
-                handRange.UserId = FigureOutUserId();
-                handRange = _handRangeService.CreateOrUpdateHandRange(handRange);
-            }
-            catch (HandRangeServiceException ex)
-            {
-                //log
-                return BadRequest(new {ex.Message});
-            }
-
-            return Ok(handRange);
-        }
+        // [HttpPost]
+        // [Authorize]
+        // public IActionResult CreateHandRange(
+        //     [FromBody] HandRangeDto handRange)
+        // {
+        //     if (handRange == null)
+        //     {
+        //         return BadRequest();
+        //     }
+        //
+        //     try
+        //     {
+        //         handRange.UserId = FigureOutUserId();
+        //         handRange = _handRangeService.CreateOrUpdateHandRange(handRange);
+        //     }
+        //     catch (HandRangeServiceException ex)
+        //     {
+        //         //log
+        //         return BadRequest(new {ex.Message});
+        //     }
+        //
+        //     return Ok(handRange);
+        // }
     }
 }

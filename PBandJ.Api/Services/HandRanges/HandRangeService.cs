@@ -1,12 +1,10 @@
-﻿using PBandJ.Api.Entities;
-using PBandJ.Api.Enums;
+﻿using System;
+using System.Collections.Generic;
+using PBandJ.Api.Entities;
 using PBandJ.Api.Models;
 using PBandJ.Api.Repositories;
-using System;
-using System.Collections.Generic;
-using Position = PBandJ.Api.Entities.Position;
 
-namespace PBandJ.Api.Services
+namespace PBandJ.Api.Services.HandRanges
 {
     public class HandRangeService : IHandRangeService
     {
@@ -24,7 +22,7 @@ namespace PBandJ.Api.Services
             try
             {
                 var handRange = _handRangeRepository.GetHandRange(userId, positionId);
-                var handRangeDto = MapEntityToDto(handRange);
+                var handRangeDto = Mapper.MapEntityToDto(handRange);
                 return handRangeDto;
             }
             catch (Exception ex)
@@ -42,29 +40,21 @@ namespace PBandJ.Api.Services
             var handRangeDtos = new List<HandRangeDto>();
             foreach (var handRange in handRanges)
             {
-                var handRangeDto = MapEntityToDto(handRange);
+                var handRangeDto = Mapper.MapEntityToDto(handRange);
                 handRangeDtos.Add(handRangeDto);
             }
 
             return handRangeDtos;
         }
 
-        private HandRangeDto MapEntityToDto(HandRange handRange)
-        {
-            var handRangeDto = new HandRangeDto
-            {
-                Hands = handRange.HandsArray,
-            };
-
-            return handRangeDto;
-        }
+        
 
         public HandRangeDto CreateOrUpdateHandRange(HandRangeDto handRangeDto)
         {
             SanitizeHands(handRangeDto.Hands);
-            var handRangeEntity = MapDtoToEntity(handRangeDto);
+            var handRangeEntity = Mapper.MapDtoToEntity(handRangeDto);
 
-            return  MapEntityToDto(AddOrUpdateHandRange(handRangeEntity));
+            return  Mapper.MapEntityToDto(AddOrUpdateHandRange(handRangeEntity));
         }
 
         private void SanitizeHands(string[] hands)
@@ -81,15 +71,7 @@ namespace PBandJ.Api.Services
             return deDupedHands;
         }
 
-        private HandRange MapDtoToEntity(HandRangeDto handRangeDto)
-        {
-            var handRange = new HandRange
-            {
-                HandsArray = handRangeDto.Hands,
-                UserId = handRangeDto.UserId
-            };
-            return handRange;
-        }
+
 
         private HandRange AddOrUpdateHandRange(HandRange handRange)
         {

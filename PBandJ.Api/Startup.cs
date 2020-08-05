@@ -5,8 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PBandJ.Api.Entities;
 using PBandJ.Api.Repositories;
+using PBandJ.Api.Repositories.Positions;
 using PBandJ.Api.Repositories.Situations;
 using PBandJ.Api.Services;
+using PBandJ.Api.Services.HandRanges;
+using PBandJ.Api.Services.Positions;
 using PBandJ.Api.Services.Situations;
 
 namespace PBandJ.Api
@@ -44,6 +47,7 @@ namespace PBandJ.Api
             services.AddScoped<IHandRangeValidationService, HandRangeValidationService>();
             services.AddScoped<IHandRangeRepository, HandRangeRepository>();
             services.AddScoped<IPositionService, PositionService>();
+            services.AddScoped<IPositionRepository, PositionRepository>();
             services.AddScoped<IScenarioService, ScenarioService>();
             services.AddScoped<IScenarioRepository, ScenarioRepository>();
             services.AddScoped<ISituationService, SituationService>();

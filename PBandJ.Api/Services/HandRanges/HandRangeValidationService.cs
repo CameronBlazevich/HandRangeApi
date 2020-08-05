@@ -1,9 +1,9 @@
-﻿using PBandJ.Api.Enums;
+﻿using System.Linq;
+using PBandJ.Api.Enums;
 using PBandJ.Api.Helpers.cs;
 using PBandJ.Api.Services.Exceptions;
-using System.Linq;
 
-namespace PBandJ.Api.Services
+namespace PBandJ.Api.Services.HandRanges
 {
     public class HandRangeValidationService : IHandRangeValidationService
     {

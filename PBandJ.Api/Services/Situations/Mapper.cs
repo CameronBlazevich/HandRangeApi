@@ -1,4 +1,5 @@
-﻿using PBandJ.Api.Entities;
+﻿using System.Linq;
+using PBandJ.Api.Entities;
 using PBandJ.Api.Models;
 
 namespace PBandJ.Api.Services.Situations
@@ -11,7 +12,8 @@ namespace PBandJ.Api.Services.Situations
             {
                 DisplayName = situation.DisplayName,
                 Id = situation.Id,
-                ScenarioId = situation.ScenarioId
+                ScenarioId = situation.ScenarioId, 
+                Positions = situation.Positions.Select(Positions.Mapper.MapToDto).ToList()
             };
 
             return situationDto;
@@ -22,7 +24,8 @@ namespace PBandJ.Api.Services.Situations
             var entity = new Situation
             {
                 DisplayName = dto.DisplayName,
-                ScenarioId = dto.ScenarioId
+                ScenarioId = dto.ScenarioId,
+                Positions = dto.Positions.Select(Positions.Mapper.MapToEntity)
             };
 
             return entity;
