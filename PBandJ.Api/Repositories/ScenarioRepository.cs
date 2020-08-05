@@ -1,6 +1,7 @@
 ﻿using PBandJ.Api.Entities;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using PBandJ.Api.Models;
 
 namespace PBandJ.Api.Repositories
@@ -23,7 +24,7 @@ namespace PBandJ.Api.Repositories
 
         public IEnumerable<Scenario> GetScenarios(string userId)
         {
-            return _context.Scenarios.Where(s => s.UserId == userId).ToList();
+            return _context.Scenarios.Include("Situations").Where(s => s.UserId == userId).ToList();
         }
 
         public Scenario GetScenario(string userId, int scenarioId)

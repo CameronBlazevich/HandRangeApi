@@ -2,6 +2,7 @@
 using PBandJ.Api.Entities;
 using PBandJ.Api.Enums;
 using System.Linq;
+using Position = PBandJ.Api.Entities.Position;
 
 namespace PBandJ.Api.Repositories
 {
@@ -27,9 +28,9 @@ namespace PBandJ.Api.Repositories
             return handRange;
         }
 
-        public HandRange GetHandRange(string userId, Position position)
+        public HandRange GetHandRange(string userId, int positionId)
         {
-            return _context.HandRanges.SingleOrDefault(hr => hr.Position == position && hr.UserId == userId);
+            return _context.HandRanges.SingleOrDefault(hr => hr.PositionId == positionId && hr.UserId == userId);
         }
 
         public IEnumerable<HandRange> GetHandRanges(string userId)

@@ -27,13 +27,13 @@ namespace PBandJ.Api.Controllers
             return Ok(handRanges);
         }
 
-        [HttpGet("{positionId}")]
-        public IActionResult GetHandRangeByPosition(int positionId)
-        {
-            var userId = FigureOutUserId();
-            var handRange = _handRangeService.GetHandRange(userId, (Position)positionId);
-            return Ok(handRange);
-        }
+        // [HttpGet("{positionId}")]
+        // public IActionResult GetHandRangeByPosition(int positionId)
+        // {
+        //     var userId = FigureOutUserId();
+        //     var handRange = _handRangeService.GetHandRange(userId, (Position)positionId);
+        //     return Ok(handRange);
+        // }
 
 
 

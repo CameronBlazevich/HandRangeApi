@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using PBandJ.Api.Entities;
 using PBandJ.Api.Enums;
+using Position = PBandJ.Api.Entities.Position;
 
 namespace PBandJ.Api.Repositories
 {
@@ -8,7 +9,7 @@ namespace PBandJ.Api.Repositories
     {
         HandRange AddHandRange(HandRange handRange);
         HandRange UpdateHandRange(HandRange handRange);
-        HandRange GetHandRange(string userId, Position position);
+        HandRange GetHandRange(string userId, int positionId);
         IEnumerable<HandRange> GetHandRanges(string userId);
     }
 }

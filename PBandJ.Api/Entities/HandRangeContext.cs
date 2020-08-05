@@ -10,12 +10,13 @@ namespace PBandJ.Api.Entities
         }
         public DbSet<HandRange> HandRanges { get; set; }
         public DbSet<Scenario> Scenarios { get; set; }
-        public DbSet<PositionMenu> PositionMenus { get; set; }
+        public DbSet<Situation> Situations { get; set; }
+        public DbSet<Position> Positions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<HandRange>()
-                .HasKey(hr => new { hr.UserId, hr.Position });
+            // modelBuilder.Entity<HandRange>()
+            //     .HasKey(hr => new { hr.UserId, hr.Position });
         }
     }
 }

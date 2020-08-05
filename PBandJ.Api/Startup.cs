@@ -5,7 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PBandJ.Api.Entities;
 using PBandJ.Api.Repositories;
+using PBandJ.Api.Repositories.Situations;
 using PBandJ.Api.Services;
+using PBandJ.Api.Services.Situations;
 
 namespace PBandJ.Api
 {
@@ -39,11 +41,13 @@ namespace PBandJ.Api
             services.AddDbContext<HandRangeContext>(o => o.UseSqlServer(connectionString));
 
             services.AddScoped<IHandRangeService, HandRangeService>();
-            services.AddTransient<IHandRangeValidationService, HandRangeValidationService>();
+            services.AddScoped<IHandRangeValidationService, HandRangeValidationService>();
             services.AddScoped<IHandRangeRepository, HandRangeRepository>();
-            services.AddTransient<IPositionService, PositionService>();
-            services.AddTransient<IScenarioService, ScenarioService>();
+            services.AddScoped<IPositionService, PositionService>();
+            services.AddScoped<IScenarioService, ScenarioService>();
             services.AddScoped<IScenarioRepository, ScenarioRepository>();
+            services.AddScoped<ISituationService, SituationService>();
+            services.AddScoped<ISituationRepository, SituationRepository>();
 
         }
 

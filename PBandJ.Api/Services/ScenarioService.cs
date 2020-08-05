@@ -4,6 +4,8 @@ using PBandJ.Api.Repositories;
 using PBandJ.Api.Services.Validation;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using PBandJ.Api.Services.Situations;
 
 namespace PBandJ.Api.Services
 {
@@ -78,7 +80,8 @@ namespace PBandJ.Api.Services
             return new ScenarioDto
             {
                 Id = scenario.Id,
-                Name = scenario.Name
+                Name = scenario.Name,
+                Situations = scenario.Situations.Select(Mapper.MapToDto).ToList()
             };
         }
     }

@@ -4,6 +4,7 @@ using PBandJ.Api.Models;
 using PBandJ.Api.Repositories;
 using System;
 using System.Collections.Generic;
+using Position = PBandJ.Api.Entities.Position;
 
 namespace PBandJ.Api.Services
 {
@@ -18,11 +19,11 @@ namespace PBandJ.Api.Services
             _handRangeRepository = handRangeRepository;
         }
 
-        public HandRangeDto GetHandRange(string userId, Position position)
+        public HandRangeDto GetHandRange(string userId, int positionId)
         {
             try
             {
-                var handRange = _handRangeRepository.GetHandRange(userId, position);
+                var handRange = _handRangeRepository.GetHandRange(userId, positionId);
                 var handRangeDto = MapEntityToDto(handRange);
                 return handRangeDto;
             }
@@ -52,10 +53,7 @@ namespace PBandJ.Api.Services
         {
             var handRangeDto = new HandRangeDto
             {
-                //TODO: decide if i want to return userId
-                //UserId = handRange.UserId,
                 Hands = handRange.HandsArray,
-                Position = handRange.Position
             };
 
             return handRangeDto;
@@ -88,7 +86,6 @@ namespace PBandJ.Api.Services
             var handRange = new HandRange
             {
                 HandsArray = handRangeDto.Hands,
-                Position = handRangeDto.Position,
                 UserId = handRangeDto.UserId
             };
             return handRange;
@@ -98,7 +95,7 @@ namespace PBandJ.Api.Services
         {
             try
             {
-                var existingRecord = _handRangeRepository.GetHandRange(handRange.UserId, handRange.Position);
+                var existingRecord = _handRangeRepository.GetHandRange(handRange.UserId, handRange.PositionId);
                 if (existingRecord != null)
                 {
                     existingRecord.HandsArray = handRange.HandsArray;

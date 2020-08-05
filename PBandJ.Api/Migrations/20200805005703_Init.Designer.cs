@@ -12,9 +12,10 @@ using System;
 namespace PBandJ.Api.Migrations
 {
     [DbContext(typeof(HandRangeContext))]
-    partial class HandRangeContextModelSnapshot : ModelSnapshot
+    [Migration("20200805005703_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,7 +86,7 @@ namespace PBandJ.Api.Migrations
 
                     b.HasIndex("ScenarioId");
 
-                    b.ToTable("Situations");
+                    b.ToTable("Situation");
                 });
 
             modelBuilder.Entity("PBandJ.Api.Entities.HandRange", b =>
