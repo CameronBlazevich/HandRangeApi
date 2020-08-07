@@ -2,16 +2,11 @@
 {
     public enum Position
     {
-        Button = 0,
-        SmallBlind = 1,
-        BigBlind = 2,
-        Utg = 3,
-        Utg1 = 4,
-        Utg2 = 5,
-        Lojack = 6,
-        Hijack = 7,
-        Cutoff = 8, 
-
-
+        SB = 1,
+        BB = 2,
+        UTG = 3,
+        HJ = 4,
+        CO = 5,
+        BTN = 6
     }
 }

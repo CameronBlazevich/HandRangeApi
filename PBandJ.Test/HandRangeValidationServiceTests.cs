@@ -3,6 +3,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PBandJ.Api.Services;
 using PBandJ.Api.Services.Exceptions;
+using PBandJ.Api.Services.HandRanges;
 
 namespace PBandJ.Test
 {

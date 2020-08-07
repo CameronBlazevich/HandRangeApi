@@ -6,6 +6,7 @@ using PBandJ.Api.Enums;
 using PBandJ.Api.Models;
 using PBandJ.Api.Repositories;
 using PBandJ.Api.Services;
+using PBandJ.Api.Services.HandRanges;
 
 namespace PBandJ.Test
 {
@@ -36,21 +37,19 @@ namespace PBandJ.Test
             var expected = new HandRangeDto
             {
                 Hands= hands,
-                Position = Position.BigBlind
             };
 
             var handRangeEntityMock = new HandRange
             {
                 UserId = "1",
                 HandsArray = hands,
-                Position = Position.BigBlind
             };
 
-            _repoMock.Setup(repo => repo.GetHandRange(It.IsAny<string>(), It.IsAny<Position>())).Returns(handRangeEntityMock);
+            _repoMock.Setup(repo => repo.GetHandRange(It.IsAny<string>(), It.IsAny<int>())).Returns(handRangeEntityMock);
 
             var service = new HandRangeService(_repoMock.Object, _validationServiceMock.Object);
 
-            var result = service.GetHandRange("1", Position.BigBlind);
+            var result = service.GetHandRange("1", 1);
             result.ShouldBeEquivalentTo(expected);
         }
 
@@ -60,21 +59,18 @@ namespace PBandJ.Test
             var hands = new[] { "AAo", "AJs" };
             var handRangeDto = new HandRangeDto
             {
-                UserId = "2",
                 Hands = hands,
-                Position = Position.BigBlind
             };
 
             var handRangeEntity = new HandRange
             {
                 UserId = "2",
                 HandsArray = hands,
-                Position = Position.BigBlind
             };
 
             var handRangeAtRunTime = new HandRange();
             _validationServiceMock.Setup(vs => vs.VerifyHandRangeContainsOnlyValidHands(It.IsAny<string[]>())).Verifiable();
-            _repoMock.Setup(repo => repo.GetHandRange(It.IsAny<string>(), It.IsAny<Position>())).Returns((HandRange)null);
+            _repoMock.Setup(repo => repo.GetHandRange(It.IsAny<string>(), It.IsAny<int>())).Returns((HandRange)null);
             _repoMock.Setup(repo => repo.AddHandRange(It.IsAny<HandRange>()))
                 .Callback<HandRange>(hr => handRangeAtRunTime = hr)
                 .Returns(handRangeEntity);
@@ -98,28 +94,24 @@ namespace PBandJ.Test
             var hands = new[] { "AAo", "AJs" };
             var handRangeDto = new HandRangeDto
             {
-                UserId = "2",
                 Hands = hands,
-                Position = Position.BigBlind
             };
 
             var handRangeEntity = new HandRange
             {
                 UserId = "2",
                 HandsArray = hands,
-                Position = Position.BigBlind
             };
 
             var handRangeMock = new HandRange
             {
                 UserId = handRangeEntity.UserId,
-                Position = handRangeEntity.Position,
                 HandsArray = new [] {"Q6s"}
             };
 
             var handRangeAtRunTime = new HandRange();
             _validationServiceMock.Setup(vs => vs.VerifyHandRangeContainsOnlyValidHands(It.IsAny<string[]>())).Verifiable();
-            _repoMock.Setup(repo => repo.GetHandRange(It.IsAny<string>(), It.IsAny<Position>())).Returns(handRangeMock);
+            _repoMock.Setup(repo => repo.GetHandRange(It.IsAny<string>(), It.IsAny<int>())).Returns(handRangeMock);
             _repoMock.Setup(repo => repo.UpdateHandRange(It.IsAny<HandRange>()))
                 .Callback<HandRange>(hr => handRangeAtRunTime = hr)
                 .Returns(handRangeEntity);
