@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PBandJ.Api.Entities;
 
 namespace PBandJ.Api.Migrations
 {
     [DbContext(typeof(HandRangeContext))]
-    partial class HandRangeContextModelSnapshot : ModelSnapshot
+    [Migration("20200807015614_ChangePositionColumnNameToKey")]
+    partial class ChangePositionColumnNameToKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

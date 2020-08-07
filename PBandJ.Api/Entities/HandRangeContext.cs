@@ -15,6 +15,7 @@ namespace PBandJ.Api.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // modelBuilder.Entity<Scenario>().HasData()
             // modelBuilder.Entity<HandRange>()
             //     .HasKey(hr => new { hr.UserId, hr.Position });
         }

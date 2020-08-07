@@ -58,6 +58,12 @@ namespace PBandJ.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            
+            app.UseRouting();
             app.UseAuthentication();
 
             var allowedOrigins = new string[] { "http://localhost:3000", "https://handrangememorizer.herokuapp.com" };
@@ -65,18 +71,14 @@ namespace PBandJ.Api
                 builder.WithOrigins(allowedOrigins)
                 .AllowAnyMethod()
                 .AllowAnyHeader());
-            if (env.IsDevelopment())
+            
+            app.UseEndpoints(endpoints =>
             {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseMvc();
-
-
-            //app.Run(async (context) =>
-            //{
-            //    await context.Response.WriteAsync("Hello World!");
-            //});
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+           
         }
     }
 }
