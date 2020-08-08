@@ -14,7 +14,7 @@ namespace PBandJ.Api.Services.Positions
         public PositionDto CreatePosition(PositionDto position)
         {
             var entity = Mapper.MapToEntity(position);
-            entity = _positionRepository.CreatePosition(entity);
+            entity = _positionRepository.UpsertPosition(entity);
             return Mapper.MapToDto(entity);
         }
 

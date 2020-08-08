@@ -6,7 +6,7 @@ namespace PBandJ.Api.Repositories.Positions
 {
     public interface IPositionRepository
     {
-        Position CreatePosition(Position entity);
+        Position UpsertPosition(Position entity);
         Position GetPositionOrDefault(PositionDto positionDto);
     }
 }

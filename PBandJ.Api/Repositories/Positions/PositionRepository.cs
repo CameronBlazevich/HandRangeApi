@@ -14,11 +14,24 @@ namespace PBandJ.Api.Repositories.Positions
            _context = context;
        }
        
-        public Position CreatePosition(Position entity)
+        public Position UpsertPosition(Position entity)
         {
-            _context.Positions.Add(entity);
+            var existingPosition = _context.Positions.Include(x => x.HandRange).FirstOrDefault(x =>
+                    x.SituationId == entity.SituationId && x.Key == entity.Key && x.UserId == entity.UserId)
+                ;
+            if (existingPosition == null)
+            {
+                _context.Positions.Add(entity);
+                _context.SaveChanges();
+                return entity;
+            }
+
+            existingPosition.HandRange.Hands = entity.HandRange.Hands;
+            _context.Update(existingPosition);
             _context.SaveChanges();
-            return entity;
+            return existingPosition;
+
+
         }
 
         public Position GetPositionOrDefault(PositionDto positionDto)
