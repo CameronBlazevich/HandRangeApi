@@ -52,7 +52,7 @@ namespace PBandJ.Api.Controllers
                     UserId = userId
                 };
 
-                var result = _positionService.CreatePosition(positionDto);
+                var result = _positionService.UpsertPosition(positionDto);
 
                 return Ok(result);
             }

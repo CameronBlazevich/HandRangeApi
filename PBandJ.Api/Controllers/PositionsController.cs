@@ -19,9 +19,9 @@ namespace PBandJ.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreatePosition([FromBody] PositionDto position)
+        public IActionResult UpsertPosition([FromBody] PositionDto position)
         {
-            var result = _positionService.CreatePosition(position);
+            var result = _positionService.UpsertPosition(position);
             return Ok(result);
         }
         

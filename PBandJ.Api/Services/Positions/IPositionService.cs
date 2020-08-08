@@ -4,7 +4,7 @@ namespace PBandJ.Api.Services.Positions
 {
     public interface IPositionService
     { 
-        PositionDto CreatePosition(PositionDto position);
+        PositionDto UpsertPosition(PositionDto position);
         PositionDto GetPosition(PositionDto positionDto);
     }
 }
