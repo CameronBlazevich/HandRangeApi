@@ -33,7 +33,7 @@ namespace PBandJ.Api.Controllers
                 {
                     Hands = request.Hands,
                     UserId = userId,
-                    PositionId = request.PositionId  
+                    PositionId = request.PositionKey.PositionId  
                 };
 
                 var result = _handRangeService.CreateOrUpdateHandRange(handRangeDto);

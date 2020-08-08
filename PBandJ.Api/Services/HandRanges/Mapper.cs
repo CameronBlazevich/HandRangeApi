@@ -9,7 +9,10 @@ namespace PBandJ.Api.Services.HandRanges
         {
             if (handRange == null)
             {
-                return  new HandRangeDto();
+                return  new HandRangeDto
+                {
+                    Hands = new string[0]
+                };
             }
             
             var handRangeDto = new HandRangeDto

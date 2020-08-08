@@ -5,7 +5,7 @@ namespace PBandJ.Api.Models.Requests
 {
     public class UpdateHandRangeRequest
     {
-        public int PositionId { get; set; }
+        public PositionCompositeKey PositionKey { get; set; }
 
         public string[] Hands { get; set; }
         // public List<Hand> Hands  { get; set; }
@@ -15,7 +15,7 @@ namespace PBandJ.Api.Models.Requests
     {
         public int ScenarioId { get; set; }
         public int SituationId { get; set; }
-        public Position PositionKey { get; set; }
+        public int PositionId { get; set; }
     }
 
     public class Hand

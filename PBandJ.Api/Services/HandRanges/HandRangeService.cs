@@ -22,6 +22,15 @@ namespace PBandJ.Api.Services.HandRanges
             try
             {
                 var handRange = _handRangeRepository.GetHandRange(userId, positionId);
+                if (handRange == null)
+                {
+                    return new HandRangeDto
+                    {
+                        Hands = new string[0],
+                        PositionId = positionId,
+                        UserId = userId,
+                    };
+                }
                 var handRangeDto = Mapper.MapEntityToDto(handRange);
                 return handRangeDto;
             }
