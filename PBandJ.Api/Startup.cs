@@ -21,6 +21,7 @@ namespace PBandJ.Api
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(opts => opts.AddDefaultPolicy( builder => builder.WithOrigins("http://localhost:3000")));
             //TODO: Move to config
             string domain = $"https://handrangememorizer.auth0.com";
             services.AddAuthentication(options =>
@@ -35,7 +36,7 @@ namespace PBandJ.Api
             });
 
             services.AddControllers().AddJsonOptions(opts => opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
-            services.AddCors();
+            
 
             //var connectionString = @"Data Source=tcp:s18.winhost.com;Initial Catalog=DB_118134_handrang;User ID=DB_118134_handrang_user;Password=J24hzkoPr2zpceReifju;Integrated Security=False;";
             var connectionString = @"Server=(localdb)\mssqllocaldb;Database=PBandJDb;Trusted_Connection=true";
