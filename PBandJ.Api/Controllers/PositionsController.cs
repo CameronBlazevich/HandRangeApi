@@ -18,6 +18,7 @@ namespace PBandJ.Api.Controllers
             _positionService = positionService;
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult UpsertPosition([FromBody] PositionDto position)
         {
