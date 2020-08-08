@@ -5,7 +5,7 @@ namespace PBandJ.Api.Models.Requests
 {
     public class UpdateHandRangeRequest
     {
-        public PositionCompositeKey PositionKey { get; set; }
+        public int PositionId { get; set; }
 
         public string[] Hands { get; set; }
         // public List<Hand> Hands  { get; set; }

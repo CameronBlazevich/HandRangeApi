@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PBandJ.Api.Models;
 using PBandJ.Api.Services;
 
@@ -16,11 +17,20 @@ namespace PBandJ.Api.Controllers
         [HttpGet]
         public IActionResult GetScenarios()
         {
+            var scenarios = _scenarioService.GetScenarios();
+            return Ok(scenarios);
+        }
+        
+        [Authorize]
+        [HttpGet("[action]")]
+        public IActionResult GetUserScenarios()
+        {
             var userId = FigureOutUserId();
-            var scenarios = _scenarioService.GetScenarios(userId);
+            var scenarios = _scenarioService.GetUserScenarios(userId);
             return Ok(scenarios);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult CreateScenario([FromBody] ScenarioDto scenario)
         {

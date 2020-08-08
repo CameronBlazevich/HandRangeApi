@@ -17,10 +17,22 @@ namespace PBandJ.Api.Services
             _scenarioRepo = scenarioRepo;
         }
         
-        public IEnumerable<ScenarioDto> GetScenarios(string userId)
+        public IEnumerable<ScenarioDto> GetScenarios()
         {
             var scenarioDtos = new List<ScenarioDto>();
-            var scenarios = _scenarioRepo.GetScenarios(userId);
+            var scenarios = _scenarioRepo.GetScenarios();
+
+            foreach(var scenario in scenarios)
+            {
+                scenarioDtos.Add(MapEntityToDto(scenario));
+            }
+
+            return scenarioDtos;
+        }
+        public IEnumerable<ScenarioDto> GetUserScenarios(string userId)
+        {
+            var scenarioDtos = new List<ScenarioDto>();
+            var scenarios = _scenarioRepo.GetUserScenarios(userId);
 
             foreach(var scenario in scenarios)
             {

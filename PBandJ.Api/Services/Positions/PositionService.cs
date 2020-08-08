@@ -11,22 +11,5 @@ namespace PBandJ.Api.Services.Positions
         {
             _positionRepository = positionRepository;
         }
-        public PositionDto UpsertPosition(PositionDto position)
-        {
-            var entity = Mapper.MapToEntity(position);
-            entity = _positionRepository.UpsertPosition(entity);
-            return Mapper.MapToDto(entity);
-        }
-
-        public PositionDto GetPosition(PositionDto positionDto)
-        {
-            var position = _positionRepository.GetPositionOrDefault(positionDto);
-            if (position != null)
-            {
-                return Mapper.MapToDto(position);
-            }
-            positionDto.HandRange = new HandRangeDto {Hands = new string[0]};
-            return positionDto;
-        }
     }
 }

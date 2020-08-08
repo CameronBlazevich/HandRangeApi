@@ -6,7 +6,8 @@ namespace PBandJ.Api.Services
 {
     public interface IScenarioService
     {
-        IEnumerable<ScenarioDto> GetScenarios(string userId);
+        IEnumerable<ScenarioDto> GetScenarios();
+        IEnumerable<ScenarioDto> GetUserScenarios(string userId);
         ScenarioDto CreateScenario(ScenarioDto scenario);
 
     }

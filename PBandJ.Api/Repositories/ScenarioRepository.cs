@@ -21,13 +21,22 @@ namespace PBandJ.Api.Repositories
 
             return scenario;
         }
+        
+        public IEnumerable<Scenario> GetUserScenarios(string userId)
+        {
+            //ToDo: need to make sure this query works
+            return _context.Scenarios
+                .Include(scenario => scenario.Situations)
+                .ThenInclude(situation => situation.Positions.Where(p => p.HandRange.UserId == userId))
+                .ThenInclude(position => position.HandRange)
+                .ToList();
+        }
 
-        public IEnumerable<Scenario> GetScenarios(string userId)
+        public IEnumerable<Scenario> GetScenarios()
         {
             return _context.Scenarios
                 .Include(scenario => scenario.Situations)
-                .ThenInclude(situation => situation.Positions.Where(p => p.UserId == userId))
-                .ThenInclude(position => position.HandRange)
+                .ThenInclude(situation => situation.Positions)
                 .ToList();
         }
 

@@ -7,8 +7,8 @@ namespace PBandJ.Api.Repositories
     public interface IScenarioRepository
     {
         Scenario CreateScenario(Scenario scenario);
-        IEnumerable<Scenario> GetScenarios(string userId);
-        // Scenario GetScenario(string userId, int scenarioId);
+        IEnumerable<Scenario> GetScenarios();
+        IEnumerable<Scenario> GetUserScenarios(string userId);
         void UpdateScenario(Scenario scenarioToUpdate);
     }
 }

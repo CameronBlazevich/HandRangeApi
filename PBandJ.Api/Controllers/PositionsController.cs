@@ -17,28 +17,5 @@ namespace PBandJ.Api.Controllers
         {
             _positionService = positionService;
         }
-
-        [Authorize]
-        [HttpPost]
-        public IActionResult UpsertPosition([FromBody] PositionDto position)
-        {
-            var result = _positionService.UpsertPosition(position);
-            return Ok(result);
-        }
-        
-        [Authorize]
-        [HttpGet]
-        public IActionResult GetPosition([FromQuery]string situationId, string positionKey)
-        {          
-            var userId = FigureOutUserId();
-            var positionDto = new PositionDto
-            {
-                Key = Enum.Parse<Position>(positionKey),
-                SituationId = int.Parse(situationId),
-                UserId = userId
-            };
-            var position = _positionService.GetPosition(positionDto);
-            return Ok(position);
-        }
     }
 }

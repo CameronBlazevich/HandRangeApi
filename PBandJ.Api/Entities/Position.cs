@@ -7,6 +7,18 @@
         public Enums.Position Key { get; set; }
         public string DisplayName { get; set; }
         public HandRange HandRange { get; set; }
-        public string UserId { get; set; }
+
+        public Position()
+        {
+                
+        }
+
+        public Position(int id, Enums.Position key, int situationId)
+        {
+            Id = id;
+            DisplayName = key.ToString();
+            Key = key;
+            SituationId = situationId;
+        }
     }
 }
