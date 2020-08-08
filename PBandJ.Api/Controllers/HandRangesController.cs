@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,7 @@ using PBandJ.Api.Models.Requests;
 using PBandJ.Api.Services;
 using PBandJ.Api.Services.Exceptions;
 using PBandJ.Api.Services.HandRanges;
+using PBandJ.Api.Services.Positions;
 
 namespace PBandJ.Api.Controllers
 {
@@ -15,53 +17,51 @@ namespace PBandJ.Api.Controllers
     public class HandRangesController : PbAndJControllerBase
     {
         private readonly IHandRangeService _handRangeService;
-        public HandRangesController(IHandRangeService handRangeService)
+        private readonly IPositionService _positionService;
+
+        public HandRangesController(IHandRangeService handRangeService, IPositionService positionService)
         {
             _handRangeService = handRangeService;
+            _positionService = positionService;
         }
-
-        [Authorize]
-        [HttpGet]
-        public IActionResult GetHandRanges()
-        {          
-            var userId = FigureOutUserId();
-            var handRanges = _handRangeService.GetHandRanges(userId);
-            return Ok(handRanges);
-        }
-
-        // [HttpGet("{positionId}")]
-        // public IActionResult GetHandRangeByPosition(int positionId)
-        // {
-        //     var userId = FigureOutUserId();
-        //     var handRange = _handRangeService.GetHandRange(userId, (Position)positionId);
-        //     return Ok(handRange);
-        // }
-
-
+        
 
         [HttpPost]
         [Authorize]
         public IActionResult CreateHandRange(
             [FromBody] UpdateHandRangeRequest request)
         {
-            // if (request == null)
-            // {
-            //     return BadRequest();
-            // }
-            //
-            // try
-            // {
-            //     handRange.UserId = FigureOutUserId();
-            //     handRange = _handRangeService.CreateOrUpdateHandRange(handRange);
-            // }
-            // catch (HandRangeServiceException ex)
-            // {
-            //     //log
-            //     return BadRequest(new {ex.Message});
-            // }
-            //
-            // return Ok(handRange);
-            return Ok();
+            if (request == null)
+            {
+                return BadRequest();
+            }
+            
+            try
+            {
+                var userId = FigureOutUserId();
+                var handRangeDto = new HandRangeDto
+                {
+                    Hands = request.Hands
+                };
+                var positionDto = new PositionDto
+                {
+                    Key = request.PositionKey.PositionKey,
+                    DisplayName = request.PositionKey.PositionKey.ToString(),
+                    HandRange = handRangeDto,
+                    SituationId = request.PositionKey.SituationId,
+                    UserId = userId
+                };
+
+                var result = _positionService.CreatePosition(positionDto);
+
+                return Ok(result);
+            }
+            catch (HandRangeServiceException ex)
+            {
+                //log
+                return BadRequest(new {ex.Message});
+            }
+
         }
     }
 }

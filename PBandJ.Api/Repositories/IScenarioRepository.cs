@@ -8,7 +8,7 @@ namespace PBandJ.Api.Repositories
     {
         Scenario CreateScenario(Scenario scenario);
         IEnumerable<Scenario> GetScenarios(string userId);
-        Scenario GetScenario(string userId, int scenarioId);
+        // Scenario GetScenario(string userId, int scenarioId);
         void UpdateScenario(Scenario scenarioToUpdate);
     }
 }

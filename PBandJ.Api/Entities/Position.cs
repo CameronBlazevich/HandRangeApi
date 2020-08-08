@@ -7,5 +7,6 @@
         public Enums.Position Key { get; set; }
         public string DisplayName { get; set; }
         public HandRange HandRange { get; set; }
+        public string UserId { get; set; }
     }
 }

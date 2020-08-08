@@ -26,15 +26,15 @@ namespace PBandJ.Api.Repositories
         {
             return _context.Scenarios
                 .Include(scenario => scenario.Situations)
-                .ThenInclude(situation => situation.Positions)
+                .ThenInclude(situation => situation.Positions.Where(p => p.UserId == userId))
                 .ThenInclude(position => position.HandRange)
-                .Where(scenario => scenario.UserId == userId).ToList();
+                .ToList();
         }
 
-        public Scenario GetScenario(string userId, int scenarioId)
-        {
-            return _context.Scenarios.FirstOrDefault(s => s.UserId == userId && s.Id == scenarioId);
-        }
+        // public Scenario GetScenario(string userId, int scenarioId)
+        // {
+        //     return _context.Scenarios.FirstOrDefault(s => s.UserId == userId && s.Id == scenarioId);
+        // }
 
         public void UpdateScenario(Scenario scenarioToUpdate)
         {

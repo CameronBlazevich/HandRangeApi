@@ -29,12 +29,6 @@ namespace PBandJ.Api.Controllers
             return Ok(scenario);
         }
 
-        [HttpPatch]
-        public IActionResult UpdateScenario([FromBody] ScenarioDto scenario)
-        {
-            var userId = FigureOutUserId();
-            var updatedScenario = _scenarioService.UpdateScenario(userId, scenario);
-            return Ok(updatedScenario);
-        }
+        
     }
 }

@@ -1,7 +1,4 @@
-﻿using PBandJ.Api.Enums;
-using PBandJ.Api.Models;
-using System;
-using System.Collections.Generic;
+﻿using PBandJ.Api.Models;
 using PBandJ.Api.Repositories.Positions;
 
 namespace PBandJ.Api.Services.Positions
@@ -19,6 +16,17 @@ namespace PBandJ.Api.Services.Positions
             var entity = Mapper.MapToEntity(position);
             entity = _positionRepository.CreatePosition(entity);
             return Mapper.MapToDto(entity);
+        }
+
+        public PositionDto GetPosition(PositionDto positionDto)
+        {
+            var position = _positionRepository.GetPositionOrDefault(positionDto);
+            if (position != null)
+            {
+                return Mapper.MapToDto(position);
+            }
+            positionDto.HandRange = new HandRangeDto {Hands = new string[0]};
+            return positionDto;
         }
     }
 }

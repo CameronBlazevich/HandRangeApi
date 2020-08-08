@@ -16,11 +16,7 @@ namespace PBandJ.Api.Services
         {
             _scenarioRepo = scenarioRepo;
         }
-
-        public ScenarioDto GetScenario(string userId, int scenarioId)
-        {
-            return MapEntityToDto(_scenarioRepo.GetScenario(userId, scenarioId));
-        }
+        
         public IEnumerable<ScenarioDto> GetScenarios(string userId)
         {
             var scenarioDtos = new List<ScenarioDto>();
@@ -47,30 +43,13 @@ namespace PBandJ.Api.Services
             //TODO: What is the best way to handle this?
             return new ScenarioDto();
         }
-
-        public ScenarioDto UpdateScenario(string userId, ScenarioDto scenario)
-        {
-            var existingScenario = _scenarioRepo.GetScenario(userId, scenario.Id);
-            
-            if (existingScenario != null)
-            {
-                existingScenario.Name = scenario.Name;
-                _scenarioRepo.UpdateScenario(existingScenario);
-            }
-            else
-            {
-                throw new ArgumentException("No matching scenario found for the given scenario id.");
-            }
-
-            return scenario;                  
-        }
+        
 
         private Scenario MapDtoToEntity(ScenarioDto scenario)
         {
             return new Scenario
             {
                 Id = scenario.Id,
-                UserId = scenario.UserId,
                 Name = scenario.Name
             };
         }

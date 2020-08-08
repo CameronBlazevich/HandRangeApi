@@ -8,6 +8,6 @@ namespace PBandJ.Api.Services
     {
         IEnumerable<ScenarioDto> GetScenarios(string userId);
         ScenarioDto CreateScenario(ScenarioDto scenario);
-        ScenarioDto UpdateScenario(string userId, ScenarioDto scenario);
+
     }
 }

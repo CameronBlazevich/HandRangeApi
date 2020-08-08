@@ -20,7 +20,7 @@ namespace PBandJ.Test
         {
             var validHands = new[] {"AAo", "KQs"};
             Action act = () => _handRangeValidationService.VerifyHandRangeContainsOnlyValidHands(validHands);
-            act.ShouldNotThrow();
+            act.Should().NotThrow();
         }
 
         [TestMethod]
@@ -28,7 +28,7 @@ namespace PBandJ.Test
         {
             var validHands = new[] { "AAo", "KQ", "Invalid" };
             Action act = () => _handRangeValidationService.VerifyHandRangeContainsOnlyValidHands(validHands);
-            act.ShouldThrow<HandRangeServiceException>()
+            act.Should().Throw<HandRangeServiceException>()
                 .WithMessage("Invalid hands: KQ,Invalid");
         }
     }

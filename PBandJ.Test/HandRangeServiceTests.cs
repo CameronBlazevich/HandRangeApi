@@ -50,7 +50,7 @@ namespace PBandJ.Test
             var service = new HandRangeService(_repoMock.Object, _validationServiceMock.Object);
 
             var result = service.GetHandRange("1", 1);
-            result.ShouldBeEquivalentTo(expected);
+            result.Should().BeEquivalentTo(expected);
         }
 
         [TestMethod]
@@ -81,7 +81,7 @@ namespace PBandJ.Test
 
             var actual = service.CreateOrUpdateHandRange(handRangeDto);
 
-            handRangeAtRunTime.ShouldBeEquivalentTo(handRangeEntity);
+            handRangeAtRunTime.Should().BeEquivalentTo(handRangeEntity);
             //actual.ShouldBeEquivalentTo(handRangeDto);
             _validationServiceMock.Verify(m => m.VerifyHandRangeContainsOnlyValidHands(It.IsAny<string[]>()), Times.Once);
             _repoMock.Verify(m => m.UpdateHandRange(It.IsAny<HandRange>()), Times.Never);
@@ -122,7 +122,7 @@ namespace PBandJ.Test
 
             var actual = service.CreateOrUpdateHandRange(handRangeDto);
 
-            handRangeAtRunTime.ShouldBeEquivalentTo(handRangeEntity);
+            handRangeAtRunTime.Should().BeEquivalentTo(handRangeEntity);
             //actual.ShouldBeEquivalentTo(handRangeDto);
             _validationServiceMock.Verify(m => m.VerifyHandRangeContainsOnlyValidHands(It.IsAny<string[]>()), Times.Once);
             _repoMock.Verify(m => m.UpdateHandRange(It.IsAny<HandRange>()), Times.Once);

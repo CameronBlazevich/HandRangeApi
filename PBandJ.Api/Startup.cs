@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -33,10 +34,7 @@ namespace PBandJ.Api
                 options.Audience = "https://handrangememorizer.auth0.com/api/v2/";
             });
 
-
-
-
-            services.AddMvc();
+            services.AddControllers().AddJsonOptions(opts => opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
             services.AddCors();
 
             //var connectionString = @"Data Source=tcp:s18.winhost.com;Initial Catalog=DB_118134_handrang;User ID=DB_118134_handrang_user;Password=J24hzkoPr2zpceReifju;Integrated Security=False;";
@@ -65,6 +63,7 @@ namespace PBandJ.Api
             
             app.UseRouting();
             app.UseAuthentication();
+            app.UseAuthorization();
 
             var allowedOrigins = new string[] { "http://localhost:3000", "https://handrangememorizer.herokuapp.com" };
             app.UseCors(builder =>

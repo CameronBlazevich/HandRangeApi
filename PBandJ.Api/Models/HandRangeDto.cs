@@ -1,6 +1,4 @@
-﻿using PBandJ.Api.Enums;
-
-namespace PBandJ.Api.Models
+﻿namespace PBandJ.Api.Models
 {
     public class HandRangeDto
     {

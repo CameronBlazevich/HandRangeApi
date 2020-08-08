@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PBandJ.Api.Entities;
 
 namespace PBandJ.Api.Migrations
 {
     [DbContext(typeof(HandRangeContext))]
-    partial class HandRangeContextModelSnapshot : ModelSnapshot
+    [Migration("20200807022513_UpdateTablesForUserId")]
+    partial class UpdateTablesForUserId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,18 +83,6 @@ namespace PBandJ.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Scenarios");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Open Opportunity"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "3Bet Opportunity"
-                        });
                 });
 
             modelBuilder.Entity("PBandJ.Api.Entities.Situation", b =>
@@ -113,44 +103,6 @@ namespace PBandJ.Api.Migrations
                     b.HasIndex("ScenarioId");
 
                     b.ToTable("Situations");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DisplayName = "Unopened Pot",
-                            ScenarioId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DisplayName = "UTG Open",
-                            ScenarioId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            DisplayName = "HJ Open",
-                            ScenarioId = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            DisplayName = "CO Open",
-                            ScenarioId = 2
-                        },
-                        new
-                        {
-                            Id = 5,
-                            DisplayName = "BTN Open",
-                            ScenarioId = 2
-                        },
-                        new
-                        {
-                            Id = 6,
-                            DisplayName = "SB Open",
-                            ScenarioId = 2
-                        });
                 });
 
             modelBuilder.Entity("PBandJ.Api.Entities.HandRange", b =>

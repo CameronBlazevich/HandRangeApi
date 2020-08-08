@@ -1,4 +1,7 @@
-﻿using PBandJ.Api.Entities;
+﻿using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using PBandJ.Api.Entities;
+using PBandJ.Api.Models;
 
 namespace PBandJ.Api.Repositories.Positions
 {
@@ -17,5 +20,13 @@ namespace PBandJ.Api.Repositories.Positions
             _context.SaveChanges();
             return entity;
         }
-    }
+
+        public Position GetPositionOrDefault(PositionDto positionDto)
+        {
+            var position = _context.Positions.Include(p => p.HandRange).FirstOrDefault(p =>
+                p.Key == positionDto.Key && p.SituationId == positionDto.SituationId && p.UserId == positionDto.UserId);
+
+            return position;
+        }
+   }
 }
