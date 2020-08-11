@@ -28,12 +28,12 @@ namespace PBandJ.Api.Entities
             
             var situations = new List<Situation>
             {
-                new Situation {Id = 1, ScenarioId = 1, DisplayName = "Unopened Pot"},
-                new Situation {Id = 2, ScenarioId = 2, DisplayName = "UTG Open"},
-                new Situation {Id = 3, ScenarioId = 2, DisplayName = "HJ Open"},
-                new Situation {Id = 4, ScenarioId = 2, DisplayName = "CO Open"},
-                new Situation {Id = 5, ScenarioId = 2, DisplayName = "BTN Open"},
-                new Situation {Id = 6, ScenarioId = 2, DisplayName = "SB Open"}
+                new Situation {Id = 1, ScenarioId = 1, DisplayName = "Unopened Pot", OpenerPosition = null},
+                new Situation {Id = 2, ScenarioId = 2, DisplayName = "UTG Open", OpenerPosition = Enums.Position.UTG},
+                new Situation {Id = 3, ScenarioId = 2, DisplayName = "HJ Open", OpenerPosition = Enums.Position.HJ},
+                new Situation {Id = 4, ScenarioId = 2, DisplayName = "CO Open", OpenerPosition = Enums.Position.CO},
+                new Situation {Id = 5, ScenarioId = 2, DisplayName = "BTN Open", OpenerPosition = Enums.Position.BTN},
+                new Situation {Id = 6, ScenarioId = 2, DisplayName = "SB Open", OpenerPosition = Enums.Position.SB}
             };
             
             modelBuilder.Entity<Situation>().HasData(situations);

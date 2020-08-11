@@ -13,7 +13,8 @@ namespace PBandJ.Api.Services.Situations
                 DisplayName = situation.DisplayName,
                 Id = situation.Id,
                 ScenarioId = situation.ScenarioId, 
-                Positions = situation.Positions.Select(Positions.Mapper.MapToDto).ToList()
+                Positions = situation.Positions.Select(Positions.Mapper.MapToDto).ToList(),
+                OpenerPosition = situation.OpenerPosition
             };
 
             return situationDto;
@@ -25,7 +26,8 @@ namespace PBandJ.Api.Services.Situations
             {
                 DisplayName = dto.DisplayName,
                 ScenarioId = dto.ScenarioId,
-                Positions = dto.Positions.Select(Positions.Mapper.MapToEntity)
+                Positions = dto.Positions.Select(Positions.Mapper.MapToEntity),
+                OpenerPosition = dto.OpenerPosition
             };
 
             return entity;

@@ -17,11 +17,11 @@ namespace PBandJ.Api
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(opts => opts.AddDefaultPolicy( builder => builder.WithOrigins("http://localhost:3000")));
             //TODO: Move to config
             string domain = $"https://handrangememorizer.auth0.com";
             services.AddAuthentication(options =>
@@ -36,7 +36,16 @@ namespace PBandJ.Api
             });
 
             services.AddControllers().AddJsonOptions(opts => opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
-            
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:3000")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();;
+                    });
+            });
 
             //var connectionString = @"Data Source=tcp:s18.winhost.com;Initial Catalog=DB_118134_handrang;User ID=DB_118134_handrang_user;Password=J24hzkoPr2zpceReifju;Integrated Security=False;";
             var connectionString = @"Server=(localdb)\mssqllocaldb;Database=PBandJDb;Trusted_Connection=true";
@@ -63,14 +72,10 @@ namespace PBandJ.Api
             }
             
             app.UseRouting();
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseAuthentication();
             app.UseAuthorization();
 
-            var allowedOrigins = new string[] { "http://localhost:3000", "https://handrangememorizer.herokuapp.com" };
-            app.UseCors(builder =>
-                builder.WithOrigins(allowedOrigins)
-                .AllowAnyMethod()
-                .AllowAnyHeader());
             
             app.UseEndpoints(endpoints =>
             {
