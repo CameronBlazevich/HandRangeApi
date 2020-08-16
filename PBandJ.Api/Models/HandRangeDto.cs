@@ -1,9 +1,11 @@
-﻿namespace PBandJ.Api.Models
+﻿using PBandJ.Api.Entities;
+
+namespace PBandJ.Api.Models
 {
     public class HandRangeDto
     {
         public string UserId { get; set; }
         public int PositionId { get; set; }
-        public string[] Hands { get; set; }
+        public HandAction[] Hands { get; set; }
     }
 }

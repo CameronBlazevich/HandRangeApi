@@ -11,7 +11,7 @@ namespace PBandJ.Api.Services.HandRanges
             {
                 return  new HandRangeDto
                 {
-                    Hands = new string[0]
+                    Hands = new HandAction[0]
                 };
             }
             

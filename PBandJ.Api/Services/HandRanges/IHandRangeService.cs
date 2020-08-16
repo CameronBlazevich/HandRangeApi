@@ -8,5 +8,6 @@ namespace PBandJ.Api.Services.HandRanges
         HandRangeDto CreateOrUpdateHandRange(HandRangeDto handRangeDto);
         HandRangeDto GetHandRange(string userId, int positionId);
         IEnumerable<HandRangeDto> GetHandRanges(string userId);
+        // void ConvertToHandAction();
     }
 }

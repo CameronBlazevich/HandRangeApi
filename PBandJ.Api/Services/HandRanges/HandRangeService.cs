@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
 using PBandJ.Api.Entities;
 using PBandJ.Api.Models;
 using PBandJ.Api.Repositories;
@@ -26,7 +28,7 @@ namespace PBandJ.Api.Services.HandRanges
                 {
                     return new HandRangeDto
                     {
-                        Hands = new string[0],
+                        Hands = new HandAction[0],
                         PositionId = positionId,
                         UserId = userId,
                     };
@@ -66,16 +68,16 @@ namespace PBandJ.Api.Services.HandRanges
             return  Mapper.MapEntityToDto(AddOrUpdateHandRange(handRangeEntity));
         }
 
-        private void SanitizeHands(string[] hands)
+        private void SanitizeHands(HandAction[] hands)
         {
             hands = RemoveDuplicateHands(hands);
             _handRangeValidationService.VerifyHandRangeContainsOnlyValidHands(hands);
         }
 
-        private static string[] RemoveDuplicateHands(string[] hands)
+        private static HandAction[] RemoveDuplicateHands(HandAction[] hands)
         {
-            var handsHash = new HashSet<string>(hands);
-            var deDupedHands = new string[handsHash.Count];
+            var handsHash = new HashSet<HandAction>(hands);
+            var deDupedHands = new HandAction[handsHash.Count];
             handsHash.CopyTo(deDupedHands);
             return deDupedHands;
         }
@@ -104,6 +106,19 @@ namespace PBandJ.Api.Services.HandRanges
                 throw;
             }
         }
+
+        // public void ConvertToHandAction()
+        // {
+        //     var oldHandRanges = _handRangeRepository.GetHandRanges("debugUser").ToList();
+        //     
+        //     foreach (var handRange in oldHandRanges)
+        //     {
+        //         var newRange = handRange.HandsArray.Select(hand => new HandAction(hand, 100, null, null)).ToList();
+        //
+        //         handRange.Hands = JsonConvert.SerializeObject(newRange);
+        //         _handRangeRepository.UpdateHandRange(handRange);
+        //     }
+        // }
 
     }
 }

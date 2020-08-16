@@ -1,7 +1,9 @@
-﻿namespace PBandJ.Api.Services.HandRanges
+﻿using PBandJ.Api.Entities;
+
+namespace PBandJ.Api.Services.HandRanges
 {
     public interface IHandRangeValidationService
     {
-        void VerifyHandRangeContainsOnlyValidHands(string[] handRange);
+        void VerifyHandRangeContainsOnlyValidHands(HandAction[] handRange);
     }
 }

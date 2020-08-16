@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PBandJ.Api.Entities;
 using PBandJ.Api.Enums;
 
 namespace PBandJ.Api.Models.Requests
@@ -7,7 +8,7 @@ namespace PBandJ.Api.Models.Requests
     {
         public PositionCompositeKey PositionKey { get; set; }
 
-        public string[] Hands { get; set; }
+        public HandAction[] Hands { get; set; }
         // public List<Hand> Hands  { get; set; }
     }
 

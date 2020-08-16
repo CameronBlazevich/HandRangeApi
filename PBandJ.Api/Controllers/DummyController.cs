@@ -2,16 +2,17 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PBandJ.Api.Entities;
+using PBandJ.Api.Services.HandRanges;
 
 namespace PBandJ.Api.Controllers
 {
     public class DummyController: Controller
     {
-        private HandRangeContext _ctx;
+        private readonly IHandRangeService _handRangeService;
 
-        public DummyController(HandRangeContext ctx)
+        public DummyController(IHandRangeService handRangeService)
         {
-            _ctx = ctx;
+            _handRangeService = handRangeService;
         }
 
         [Authorize]
@@ -28,5 +29,13 @@ namespace PBandJ.Api.Controllers
         {
             return Ok("No-Auth Endpoint.");
         }
+
+        // [HttpPost]
+        // [Route("api/test")]
+        // public IActionResult TestPost()
+        // {
+        //     _handRangeService.ConvertToHandAction();
+        //     return Ok();
+        // }
     }
 }
