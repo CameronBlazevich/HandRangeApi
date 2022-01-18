@@ -1,0 +1,359 @@
+:root {
+  --hand-height: 35px;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.center {
+  display: inline-block;
+  text-align: center;
+}
+
+.legend-row {
+  text-align: center;
+  vertical-align: middle;
+  height: 100%;
+}
+
+.legend-label {
+  height: var(--hand-height);
+  line-height: var(--hand-height);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.hand {
+  width: var(--hand-height);
+  height: var(--hand-height);
+  display: inline-block;
+  border-style: solid;
+  border-width: 1px;
+  border-color: grey;
+  border-radius: 5px;
+  margin: 3px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: var(--hand-height);
+}
+.hand:hover {
+  cursor: pointer;
+}
+.selected {
+  background-color: #62daff;
+}
+
+.correct {
+  background-color: #08b83d;
+}
+
+.quized-hand {
+  background-color: orange;
+}
+
+.incorrect {
+  background-color: #d9534f;
+}
+
+.shouldHaveBeenSelected {
+  background-color: #5cb85c;
+}
+
+.btn-margin {
+  margin: 7px 3px;
+}
+
+.unauthenticated-warning-container {
+  margin: 10px;
+}
+
+.unauthenticated-warning-container > div {
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  /* margin: 4px;
+  padding-top: 10px; */
+}
+
+.selectable-selectbox {
+  background-color: blue;
+  border-style: dashed;
+  border-color: black;
+  border-width: 1px;
+  opacity: 0.15;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.range-updater-container {
+  display: inline-block;
+  margin: 10px;
+  padding: 5px;
+}
+
+.drill-container {
+  margin: 20px;
+  padding: 15px;
+}
+
+.poker-table {
+  position: relative;
+  margin: 20px;
+  padding: 15px;
+  height: 400px;
+  width: 775px;
+  /*border: 1px solid black;*/
+  min-width: fit-content;
+  /*border-radius: 150px;*/
+}
+
+.poker-table-row {
+  /* border: 1px solid grey; */
+  position: relative;
+}
+
+.poker-table-row-end {
+  height: 15%;
+}
+
+.poker-table-row-middle {
+  height: 35%;
+}
+
+.poker-seat {
+  height: 50px;
+  width: 75px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: grey;
+  display: inline-block;
+}
+
+.poker-seat.folded {
+  opacity: 35%;
+}
+
+p.bet-bubble {
+  position: relative;
+  width: 50px;
+  height: 25px;
+  text-align: center;
+  line-height: 20px;
+  background-color: #fff;
+  border: 2px solid #666;
+  border-radius: 30px;
+  box-shadow: 2px 2px 4px #888;
+  /*margin-bottom: -25px;*/
+}
+
+p.bet-bubble:before {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 3px;
+  top: 20px;
+  border: 10px solid;
+  border-color: #666 transparent transparent #666;
+}
+
+p.bet-bubble:after {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 5px;
+  top: 20px;
+  border: 7px solid;
+  border-color: #fff transparent transparent #fff;
+}
+
+div.bet-bubble {
+  position: relative;
+  left: 125px;
+  top: 5px;
+  z-index: 11;
+}
+
+.seat-container {
+  position: absolute;
+  text-align: center;
+  width:200px;
+  /*border: 1px solid cyan;*/
+}
+
+.chip-area {
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0px;
+  display: inline-block;
+  /*border: 1px solid cyan;*/
+}
+
+.dealer-button {
+  border-radius: 27px;
+  height: 27px;
+  width: 27px;
+  display: none;
+}
+
+.dealer-button.show-button {
+  display: block;
+  background-color: ghostwhite;
+  border: 2px solid black;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.chips-in-pot-container {
+  display: inline-flex;
+  /*border: 1px solid cyan;*/
+}
+
+.chips-in-pot-container.folded {
+  opacity: 25%;
+}
+
+.chips {
+  border: 2px solid black;
+  border-radius: 20px;
+  background-color: lightcoral;
+  width:25px;
+  height: 25px;
+  z-index: 10;
+}
+
+.chip-amount {
+  border: 1px solid black;
+  border-radius: 0px 15px 15px 5px;
+  background-color: lightgrey;
+  width: fit-content;
+  height: fit-content;
+  padding-left: 6px;
+  padding-right:2px;
+  margin-left:-6px;
+  align-self: flex-end;
+}
+
+.blinds {
+  /* temp */
+  /* display: inline-block;
+  background-color: red; */
+}
+
+.blinds.small-blind {
+  background-color: red;
+}
+
+.blinds.big-blind {
+  background-color: red;
+}
+
+.chip-area.open {
+  border-radius: 0px;
+  background-color: white;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.action-button {
+  margin: 5px;
+}
+
+.reset-button {
+  width: 90%;
+}
+
+div.playing-card {
+  margin: 5px;
+  height: 100px;
+  width: 66px;
+  display: inline-block;
+}
+
+.card-svg {
+  height: 100%;
+  width: 100%;
+}
+
+.formatted-range-input-form {
+  margin: 15px;
+}
+
+.highlighted-hand {
+  outline: black solid thick;
+  /* zoom: 150%;*/
+}
+
+.hero-position-selector {
+  border: 2px solid black;
+  margin: 20px;
+  padding: 20px;
+  min-width: fit-content;
+}
+
+.card-grid {
+  margin-top: 20px;
+  border: 2px solid black;
+  /*width: 535px;*/
+  min-width: fit-content;
+  max-width: fit-content;
+  white-space:nowrap;
+}
+
+.playing-cards-container {
+  /*border: 1px solid black;*/
+}
+
+.row {
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+}
+
+.fit-content {
+  min-width: fit-content;
+}
+
+.grid-legend {
+  padding: 5px;
+}
+
+.grid-legend-entry {
+  border: 2px solid black;
+  min-width: 68px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/**{border: 1px solid cyan}*/
